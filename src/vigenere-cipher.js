@@ -41,12 +41,12 @@ class VigenereCipheringMachine {
       const letterIndex = alphabet.indexOf(code[i]);
       let newLetterIdx = 0;
       let symbol = '';
-      if (currentIndex !== -1 && letterIndex !== -1) {
+      if (currentIndex !== -1 && /[A-Z]/.exec(str[i])) {
         if (currentIndex + letterIndex > alphabet.length) newLetterIdx = currentIndex + letterIndex - alphabet.length;
         if (currentIndex + letterIndex < alphabet.length) newLetterIdx = currentIndex + letterIndex;
         if (currentIndex + letterIndex === alphabet.length) newLetterIdx = 0;
         symbol = alphabet[newLetterIdx]; 
-      } else if (i === str.length - 1 && i !== code.length - 1 && letterIndex !== -1) {
+      } else if (i === str.length - 1 && i !== code.length - 1 && letterIndex !== -1 && /[A-Z]/.exec(str[i])) {
         newLetterIdx = currentIndex - code.slice(i).length;
         symbol = alphabet[newLetterIdx];
       } else {
@@ -78,11 +78,11 @@ class VigenereCipheringMachine {
       const letterIndex = alphabet.indexOf(code[i]);
       let newLetterIdx = 0;
       let symbol = '';
-      if (currentIndex !== -1 && letterIndex !== -1) {
+      if (currentIndex !== -1 && /[A-Z]/.exec(str[i])) {
         if (currentIndex - letterIndex < 0) newLetterIdx = alphabet.length - (letterIndex - currentIndex);
         if (currentIndex - letterIndex >= 0) newLetterIdx = currentIndex - letterIndex;
         symbol = alphabet[newLetterIdx]; 
-      } else if (i === str.length - 1 && i !== code.length - 1 && letterIndex !== -1) {
+      } else if (i === str.length - 1 && i !== code.length - 1 && letterIndex !== -1 && /[A-Z]/.exec(str[i])) {
         newLetterIdx = currentIndex - code.slice(i).length;
         symbol = alphabet[newLetterIdx];
       } else {
